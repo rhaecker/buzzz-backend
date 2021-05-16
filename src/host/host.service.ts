@@ -12,7 +12,8 @@ export class HostService {
   private hostRepository: Repository<Host>) {}
 
   create(createHostDto: CreateHostDto) {
-    return 'This action adds a new host';
+    
+    return this.hostRepository.save(createHostDto);
   }
 
   findAll() {
