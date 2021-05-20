@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, ObjectIdColumn, ObjectID } from 'typeorm';
+import { Entity, Column, ObjectIdColumn, ObjectID, Index } from 'typeorm';
 
 @Entity()
 export class Host {
@@ -8,8 +8,9 @@ export class Host {
   @Column()
   name: string;
 
+  @Index({unique: true})
   @Column()
-  mail: string;
+  email: string;
 
   @Column()
   password: string;

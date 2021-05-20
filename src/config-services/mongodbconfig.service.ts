@@ -14,6 +14,7 @@ export class MongoDBConfigService implements TypeOrmOptionsFactory {
             url: this.configService.get<string>('MONGODB_URL'),
             username: this.configService.get<string>('MONGODB_USER'),
             password: this.configService.get<string>('MONGODB_PASSWORD'),
+            synchronize: this.configService.get<boolean>('MONGODB_SYNCHRONIZE'),
             entities: [Host]
     };
   }

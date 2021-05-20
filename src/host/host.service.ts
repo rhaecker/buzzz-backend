@@ -12,23 +12,31 @@ export class HostService {
   private hostRepository: Repository<Host>) {}
 
   create(createHostDto: CreateHostDto) {
-    
-    return this.hostRepository.save(createHostDto);
+      return this.hostRepository.save(createHostDto);
   }
 
   findAll() {
     return this.hostRepository.find();
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     return this.hostRepository.findOne(id);
   }
 
-  update(id: number, updateHostDto: UpdateHostDto) {
+  update(id: string, updateHostDto: UpdateHostDto) {
     return this.hostRepository.update(id, updateHostDto);
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return this.hostRepository.delete(id);
+  }
+
+  async checkIfEmailIsTaken(p_email: string): Promise<boolean>{
+    const hostsWithEmail = await this.hostRepository.find({
+      where: {
+        email: {$eq: p_email}
+      }
+    })
+    return hostsWithEmail.length > 0;
   }
 }
