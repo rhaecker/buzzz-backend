@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongoDBConfigService } from './config-services/mongodbconfig.service';
 import { HostModule } from './host/host.module';
+import { GameModule } from './game/game.module';
 
 @Module({
   imports: [
@@ -15,7 +16,8 @@ import { HostModule } from './host/host.module';
       useClass: MongoDBConfigService,
       inject: [MongoDBConfigService]
     }),
-    HostModule
+    HostModule,
+    GameModule
   ],
   controllers: [AppController],
   providers: [AppService, MongoDBConfigService],
