@@ -17,6 +17,11 @@ export class GameController {
     return this.gameService.findAll();
   }
 
+  @Get('/host/:email')
+  findAllForHost(@Param('email') email: string) {
+    return this.gameService.findAllForOneHost(email);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.gameService.findOne(+id);

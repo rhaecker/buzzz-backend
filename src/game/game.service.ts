@@ -16,18 +16,26 @@ export class GameService {
   }
 
   findAll() {
-    return `This action returns all game`;
+    return this.gameRepository.find();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} game`;
+    return this.gameRepository.findOne(id);
+  }
+
+  findAllForOneHost(email: string) {
+    return this.gameRepository.find({
+      where: {
+        hostEmail: {$eq: email},
+      }
+    });
   }
 
   update(id: number, updateGameDto: UpdateGameDto) {
-    return `This action updates a #${id} game`;
+    return this.gameRepository.update(id, updateGameDto);
   }
 
   remove(id: number) {
-    return `This action removes a #${id} game`;
+    return this.gameRepository.delete(id);
   }
 }
